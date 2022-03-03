@@ -5,11 +5,11 @@ public class Notebook {
     private int price;
     private int ram;
 
-    public Notebook(String manufacturer, int price, int ram) {
+    /*public Notebook(String manufacturer, int price, int ram) {
         this.manufacturer = manufacturer;
         this.price = (int) (Math.random() * ((2000 - 500) + 1)) + 500;
         this.ram = (int) Math.random();
-    }
+    }*/
 
     public String getManufacturer() {
         return manufacturer;
