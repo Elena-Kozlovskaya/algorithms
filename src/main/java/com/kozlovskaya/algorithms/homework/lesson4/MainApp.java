@@ -26,10 +26,12 @@ public class MainApp {
         System.out.println("Find 4: " + linkedList.contains(4));
         System.out.println("Find 4444: " + linkedList.contains(4444));
 
-        System.out.println("remove first: " + linkedList.removeFirst());
+       /* System.out.println("remove first: " + linkedList.removeFirst());
         linkedList.remove(4);
-        linkedList.remove(11);
-
+        linkedList.remove(11);*/
+        System.out.println(linkedList.size());
+        linkedList.insert(linkedList.size()-1, 24);
         linkedList.display();
+        System.out.println(linkedList.size());
     }
 }

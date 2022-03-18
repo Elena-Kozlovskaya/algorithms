@@ -1,19 +1,19 @@
 package com.kozlovskaya.algorithms.homework.lesson4;
 
-public class TwoSideLinkedListImpl <E> extends SimpleLinkedListImpl<E> implements TwoSideLinkedList<E>{
+public class TwoSideLinkedListImpl<E> extends SimpleLinkedListImpl<E> implements TwoSideLinkedList<E> {
     protected Node<E> last;
 
     @Override
     public void insertFirst(E value) {
         super.insertFirst(value);
-        if(size == 1){
+        if (size == 1) {
             last = firstElement;
         }
     }
 
     @Override
     public void insertLast(E value) {
-        if(isEmpty()){
+        if (isEmpty()) {
             insertFirst(value);
             return;
         }
@@ -25,10 +25,37 @@ public class TwoSideLinkedListImpl <E> extends SimpleLinkedListImpl<E> implement
     }
 
     @Override
+    public void insertAfter(int index, E value) {
+        int position = 0;
+        Node<E> current = firstElement;
+        while (current != last && current.next != null && position != index) {
+            current = current.next;
+            position++;
+        }
+
+        if (index != position) {
+            throw new IndexOutOfBoundsException("index: " + index);
+        }
+
+        Node<E> newNode = new Node<>(value, null);
+        if (current == null) {
+            insertFirst(value);
+        }
+        else if (current == last) {
+            insertLast(value);
+        } else {
+            newNode.next = current.next;
+            current.next = newNode;
+            size++;
+        }
+    }
+
+
+    @Override
     public E removeFirst() {
         E removedValue = super.removeFirst();
 
-        if(isEmpty()){
+        if (isEmpty()) {
             last = null;
         }
         return removedValue;
