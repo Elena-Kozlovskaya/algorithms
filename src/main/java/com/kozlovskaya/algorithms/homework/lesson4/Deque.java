@@ -9,4 +9,11 @@ public interface Deque<E> extends Queue<E> {
     E removeFirst();
 
     E removeLast();
+
+    class Node<E> {
+        E item; // элемент списка
+        Node<E> next; // ссылка на следующий элемент
+        Node<E> previous;
+
+    }
 }
