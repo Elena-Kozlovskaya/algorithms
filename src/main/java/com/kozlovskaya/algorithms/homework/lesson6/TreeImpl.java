@@ -9,6 +9,7 @@ public class TreeImpl<E extends Comparable<? super E>> implements Tree<E>{
 
     private Node<E> root;
     private int size;
+    private int level;
 
     // связка данных о родительском и текущем элементе
     private class NodeAndParent {
@@ -21,6 +22,13 @@ public class TreeImpl<E extends Comparable<? super E>> implements Tree<E>{
         }
     }
 
+    public Node<E> getRoot() {
+        return root;
+    }
+
+    public int getLevel() {
+        return level;
+    }
 
     @Override
     public boolean contains(E value) {
@@ -44,6 +52,7 @@ public class TreeImpl<E extends Comparable<? super E>> implements Tree<E>{
             } else {
                 current = current.getRightChild();
             }
+            level++;
         }
         return new NodeAndParent(null, parent);
     }
@@ -273,4 +282,17 @@ public class TreeImpl<E extends Comparable<? super E>> implements Tree<E>{
         }
         System.out.println("................................................................");
     }
+
+    public static boolean isBalanced(Node current){
+        return (current == null)
+                || isBalanced(current.getLeftChild())
+                && isBalanced(current.getRightChild())
+                && Math.abs(height(current.getLeftChild()) - height(current.getRightChild())) <= 1;
+    }
+
+    private static int height(Node current) {
+        return current == null ? 0 : 1 + Math.max(height(current.getLeftChild()), height(current.getRightChild()));
+    }
+
+
 }
